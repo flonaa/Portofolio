@@ -18,7 +18,7 @@
     --header-bg: rgba(255, 255, 255, 0.7);
     --text-color-dark: #2c3e50;
     --text-color-light: #4a5a70;
-    --accent-color-blue: #6c63ff;
+    --accent-color-blue: #9b87f5;
     --name-highlight-color: #7a5aeb;
     --border-color: rgba(255, 255, 255, 0.4);
     --nav-dot-color: #aeb8c4;
@@ -28,6 +28,7 @@
     --card-bg: rgba(255, 255, 255, 0.2);
     --shadow-color: rgba(0, 0, 0, 0.08);
     --hover-shadow-color: rgba(0, 0, 0, 0.15);
+    --menu-hover-bg: rgba(155, 135, 245, 0.1);
 }
 
 
@@ -50,6 +51,7 @@ body.dark-theme {
     --card-bg: rgba(0, 0, 0, 0.3);
     --shadow-color: rgba(0, 0, 0, 0.3);
     --hover-shadow-color: rgba(0, 0, 0, 0.4);
+    --menu-hover-bg: rgba(138, 130, 255, 0.15);
 }
 
 body {
@@ -116,7 +118,7 @@ body {
     background-color: var(--nav-dot-color);
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .nav-dots .dot.active {
@@ -125,6 +127,11 @@ body {
     height: 12px;
     border: 2px solid var(--accent-color-blue);
     transform: scale(1.2);
+}
+
+.nav-dots .dot:hover {
+    transform: scale(1.3);
+    background-color: var(--accent-color-blue);
 }
 
 
@@ -184,6 +191,7 @@ body.dark-theme .nav-dots .dot.active {
     align-items: center;
     padding-top: 30px;
     gap: 30px;
+    position: relative;
 }
 
 
@@ -199,27 +207,74 @@ body.dark-theme .nav-dots .dot.active {
 
 .social-icons a {
     color: var(--social-icon-color);
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+.social-icons a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--menu-hover-bg);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    z-index: -1;
 }
 
 .social-icons a:hover {
     color: var(--accent-color-blue);
-    transform: translateY(-2px);
+    transform: translateY(-5px);
+}
+
+.social-icons a:hover::before {
+    transform: scale(1.2);
 }
 
 
-/* Theme switcher styling for header */
+/* Theme switcher styling for right sidebar */
 
 .theme-switcher {
+    position: absolute;
+    top: 20px;
     font-size: 1.5em;
     color: var(--social-icon-color);
     cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.theme-switcher::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--menu-hover-bg);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    z-index: -1;
 }
 
 .theme-switcher:hover {
     color: var(--accent-color-blue);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+}
+
+.theme-switcher:hover::before {
+    transform: scale(1.2);
 }
 
 
@@ -261,37 +316,56 @@ body.dark-theme .nav-dots .dot.active {
     transition: color 0.3s ease;
 }
 
+
+/* Menu navigasi di header yang diperbesar */
+
 .main-nav {
     display: flex;
     gap: 35px;
+    margin-left: auto;
 }
 
 .nav-link {
     text-decoration: none;
     color: var(--text-color-light);
     font-weight: 500;
-    padding-bottom: 5px;
+    padding: 12px 18px;
+    border-radius: 25px;
     position: relative;
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--menu-hover-bg);
+    border-radius: 25px;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    z-index: -1;
 }
 
 .nav-link.active {
     color: var(--accent-color-blue);
+    font-weight: 600;
 }
 
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--accent-color-blue);
+.nav-link.active::before {
+    transform: scale(1);
 }
 
 .nav-link:hover {
     color: var(--accent-color-blue);
-    transform: translateY(-1px);
+    transform: translateY(-3px);
+}
+
+.nav-link:hover::before {
+    transform: scale(1);
 }
 
 
@@ -374,7 +448,7 @@ h1 {
 }
 
 .btn-primary {
-    background-color: var(--accent-color-blue);
+    background: linear-gradient(45deg, var(--accent-color-blue), #80deea);
     color: white;
     padding: 14px 28px;
     border: none;
@@ -382,17 +456,38 @@ h1 {
     font-size: 0.95em;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #80deea, var(--accent-color-blue));
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: -1;
 }
 
 .btn-primary:hover {
-    background-color: #5d56d1;
     transform: translateY(-3px);
     box-shadow: 0 6px 15px var(--hover-shadow-color);
 }
 
+.btn-primary:hover::before {
+    opacity: 1;
+}
+
 body.dark-theme .btn-primary:hover {
-    background-color: #7a72e0;
+    background: linear-gradient(45deg, #7a72e0, #4fbac6);
 }
 
 .hero-image-container {
@@ -413,8 +508,21 @@ body.dark-theme .btn-primary:hover {
     border-radius: 250px 250px 0 0;
     overflow: hidden;
     z-index: 0;
-    background: linear-gradient(45deg, #00f2fe, #4361ee, #7209b7, #f72585);
+    background: linear-gradient(45deg, #e1b5ff, #c3f6f8, #9b87f5);
     transform: scale(0.85);
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .hero-image {
@@ -424,6 +532,13 @@ body.dark-theme .btn-primary:hover {
     position: relative;
     z-index: 1;
     bottom: 0;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 
@@ -436,7 +551,7 @@ body.dark-theme .btn-primary:hover {
     background-color: var(--star-color);
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     z-index: 2;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .hero-image-container .star-icon.bottom-left {
@@ -444,6 +559,7 @@ body.dark-theme .btn-primary:hover {
     left: -3%;
     width: 28px;
     height: 28px;
+    animation: float 4s ease-in-out infinite;
 }
 
 .hero-image-container .star-icon.top-right {
@@ -451,6 +567,19 @@ body.dark-theme .btn-primary:hover {
     right: -3%;
     width: 35px;
     height: 35px;
+    animation: float 5s ease-in-out infinite 1s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(10deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
 }
 
 
@@ -471,6 +600,7 @@ body.dark-theme .btn-primary:hover {
     justify-content: center;
     align-items: center;
     text-align: center;
+    border-radius: 20px;
 }
 
 .content-section h2 {
@@ -520,6 +650,13 @@ body.dark-theme .btn-primary:hover {
     .right-sidebar {
         order: 3;
         justify-content: center;
+        position: relative;
+        padding-top: 50px;
+    }
+    .theme-switcher {
+        position: absolute;
+        top: 15px;
+        right: 15px;
     }
     .social-icons {
         flex-direction: row;
@@ -539,9 +676,11 @@ body.dark-theme .btn-primary:hover {
     }
     .main-nav {
         gap: 25px;
+        margin-left: auto;
     }
     .nav-link {
-        font-size: 0.95em;
+        font-size: 1em;
+        padding: 10px 15px;
     }
     .hero-section {
         padding: 50px 30px;
@@ -632,9 +771,11 @@ body.dark-theme .btn-primary:hover {
         gap: 20px;
         flex-wrap: wrap;
         justify-content: center;
+        margin-left: 0;
     }
     .nav-link {
-        font-size: 0.9em;
+        font-size: 0.95em;
+        padding: 8px 12px;
     }
     .hero-section {
         padding: 30px;
@@ -685,6 +826,10 @@ body.dark-theme .btn-primary:hover {
     }
     .main-nav {
         gap: 15px;
+    }
+    .nav-link {
+        font-size: 0.9em;
+        padding: 6px 10px;
     }
     .hero-image-container {
         width: 220px;
