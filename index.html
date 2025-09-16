@@ -4,74 +4,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Digital Product Designer</title>
+    <title>Jeriyan Indiyanto - Digital Product Designer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
+    <div class="container">
+        <div class="sidebar left-sidebar">
+            <div class="nav-dots">
+                <a href="#me" class="dot active"></a>
+                <a href="#projects" class="dot"></a>
+                <a href="#gallery" class="dot"></a>
+                <a href="#blog" class="dot"></a>
+            </div>
+            <div class="scroll-down">
+                <i class="fa-solid fa-angle-down"></i>
+                <span>Scroll Down</span>
+            </div>
+        </div>
 
-    <!-- Header -->
-    <table width="100%" border="1" cellspacing="0" cellpadding="10">
-        <tr>
-            <td colspan="3" align="left"><b>Jeriyan Indiyanto</b></td>
-            <td colspan="3" align="right">
-                <a href="#me">Me</a> |
-                <a href="#projects">Projects</a> |
-                <a href="#gallery">Gallery</a> |
-                <a href="#blog">Blog</a>
-            </td>
-        </tr>
-    </table>
+        <div class="main-content-wrapper">
+            <header class="header">
+                <div class="logo">Jeriyan Indiyanto</div>
+                <nav class="main-nav">
+                    <a href="#me" class="nav-link active">Me</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#gallery" class="nav-link">Gallery</a>
+                    <a href="#blog" class="nav-link">Blog</a>
+                </nav>
+            </header>
 
-    <!-- Layout Utama -->
-    <table width="100%" border="1" cellspacing="0" cellpadding="10" height="600">
-        <tr>
-            <!-- Sidebar Kiri -->
-            <td width="100" valign="top" align="center">
-                <p>Scroll Down</p>
-                <p>●<br>●<br>●<br>●</p>
-                <p>[↓]</p>
-            </td>
+            <section id="me" class="hero-section">
+                <div class="hero-text">
+                    <div class="intro-greeting">Hello, I'm <span class="name-highlight">Jeriyan Indiyanto</span> <span class="star-icon"></span></div>
+                    <h1>I'm a Digital Product Designer</h1>
+                    <h1>and UI/UX Design enthusiast</h1>
+                    <a href="https://flonaa.github.io/flexbox/" class="btn-primary">Get in touch</a>
+                </div>
+                <div class="hero-image-container">
+                    <div class="image-bg-shape"></div>
+                    <img src="FOTO.png" alt="Jeriyan Indiyanto Profile" class="hero-image">
+                    <span class="star-icon large bottom-left"></span>
+                    <span class="star-icon large top-right"></span>
+                </div>
+            </section>
 
-            <!-- Konten Utama -->
-            <td valign="top" align="center">
-                <table width="100%" cellpadding="20">
-                    <tr>
-                        <!-- Content Left -->
-                        <td valign="top" width="50%">
-                            <p>Hello, I'm <b>Jeriyan Indiyanto</b></p>
-                            <h1>
-                                I'm a Junior<br> Web Designer<br> and UI/UX Designer<br> enthusiast
-                            </h1>
-                            <button>Get in touch</button>
-                        </td>
+            <section id="projects" class="content-section">
+                <h2>My Projects</h2>
+                <p>Details about my projects will go here.</p>
+            </section>
+            <section id="gallery" class="content-section">
+                <h2>Gallery</h2>
+                <p>My design gallery will be displayed here.</p>
+            </section>
+            <section id="blog" class="content-section">
+                <h2>Blog</h2>
+                <p>My latest blog posts will appear here.</p>
+            </section>
+        </div>
 
-                        <!-- Content Right -->
-                        <td valign="middle" width="50%" align="center">
-                            <div style="width:300px;height:400px;border:1px solid #000;">
-                                <img src="FOTO.jpg" alt="Portofolio Image" style="width:100%;height:100%;">
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
+        <div class="sidebar right-sidebar">
+            <div class="theme-switcher">
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </div>
 
-            <!-- Sidebar Kanan (Social Media) -->
-            <td width="100" align="center">
-                <table height="100%" width="100%">
-                    <tr>
-                        <td valign="middle" align="center">
-                            <p><a href="#">f</a></p>
-                            <p><a href="#">@</a></p>
-                            <p><a href="#">W</a></p>
-                            <p><a href="#">in</a></p>
-                            <p><a href="#">Be</a></p>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-link, .nav-dots .dot').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
 
+                // Remove active class from all nav links and dots
+                document.querySelectorAll('.nav-link, .nav-dots .dot').forEach(link => link.classList.remove('active'));
+
+                // Add active class to the clicked link/dot
+                this.classList.add('active');
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Theme Toggle (Light/Dark Mode)
+        const themeSwitcher = document.querySelector('.theme-switcher');
+        const body = document.body;
+        const themeIcon = themeSwitcher.querySelector('i');
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-theme');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            body.classList.remove('dark-theme');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+
+        themeSwitcher.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            if (body.classList.contains('dark-theme')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Update active nav dot/link on scroll using Intersection Observer
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navDots = document.querySelectorAll('.nav-dots .dot');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentSectionId = entry.target.id;
+
+                    // Remove active from all
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    navDots.forEach(dot => dot.classList.remove('active'));
+
+                    // Add active to corresponding link and dot
+                    document.querySelector(`.nav-link[href="#${currentSectionId}"]`).classList.add('active');
+                    document.querySelector(`.nav-dots .dot[href="#${currentSectionId}"]`).classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 
 </html>
